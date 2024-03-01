@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataTableComponent } from '../../../../components/datatable/data-table.component';
 import { CategoryModel } from '../../../../models/inventory/category.model';
 import { CommonModule } from '@angular/common';
@@ -48,15 +48,11 @@ export class CategoryTableComponent implements OnInit {
     this.getCategories({ ...this.search, pageSize: value });
   };
 
-  handleForwardPage = (): void => {
-    //ToDo: increment and decrement page size logic
-    console.log('moving backward');
-    this.getCategories({ ...this.search, page: (this.search.page || 0) + 1 });
+  handleForwardPage = (page: number): void => {
+    this.getCategories({ ...this.search, page: page });
   };
 
-  handleBackwardPage = (): void => {
-    //ToDo: increment and decrement page size logic
-    console.log('moving backward');
-    this.getCategories({ ...this.search, page: (this.search.page || 0) - 1 });
+  handleBackwardPage = (page: number): void => {
+    this.getCategories({ ...this.search, page: page });
   };
 }

@@ -1,5 +1,5 @@
 export interface SearchModel {
-  page: number | null;
-  pageSize: number | null;
+  page: number;
+  pageSize: number;
   search: string | null;
 }

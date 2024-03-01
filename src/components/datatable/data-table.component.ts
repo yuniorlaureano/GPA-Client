@@ -18,16 +18,21 @@ export class DataTableComponent {
     count: 0,
   };
 
-  @Input() onForwardPage: () => void = () => {};
-  @Input() onBackwardPage: () => void = () => {};
+  @Input() onForwardPage: (page: number) => void = () => {};
+  @Input() onBackwardPage: (page: number) => void = () => {};
   @Input() onSetPageToShow: (pageCount: number) => void = () => {};
 
   handleForwardPage() {
-    this.onForwardPage();
+    const totalPages = Math.ceil(this.options.count / this.options.pageSize);
+    if (this.options.page < totalPages) {
+      this.onForwardPage(this.options.page + 1);
+    }
   }
 
   handleBackwardPage() {
-    this.onBackwardPage();
+    if (this.options.page > 1) {
+      this.onBackwardPage(this.options.page - 1);
+    }
   }
 
   handleSetPageToShow(value: any) {
