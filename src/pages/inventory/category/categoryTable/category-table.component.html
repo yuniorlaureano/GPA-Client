@@ -1,0 +1,18 @@
+<data-table
+  [onSetPageToShow]="handleSetPageToShow"
+  [options]="data.options"
+  [onForwardPage]="handleForwardPage"
+  [onBackwardPage]="handleBackwardPage"
+>
+  <h3 class="card-title" caption>Categorías</h3>
+  <tr header>
+    <th>Nombre</th>
+    <th>Descripción</th>
+  </tr>
+  <tbody body>
+    <tr *ngFor="let category of data.data">
+      <td>{{ category.name }}</td>
+      <td>{{ category.description }}</td>
+    </tr>
+  </tbody>
+</data-table>
