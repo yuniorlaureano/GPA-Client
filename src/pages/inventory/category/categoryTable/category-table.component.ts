@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DataTableComponent } from '../../../../components/datatable/data-table.component';
 import { CategoryModel } from '../../../../models/inventory/category.model';
 import { CommonModule } from '@angular/common';
@@ -14,6 +14,9 @@ import { SearchModel } from '../../../../models/common/search.model';
   templateUrl: './category-table.component.html',
 })
 export class CategoryTableComponent implements OnInit {
+  @Input() onDelete: (model: CategoryModel) => void = () => {};
+  @Input() onEdit: (model: CategoryModel) => void = () => {};
+
   public data: DataTableDataModel<CategoryModel> = {
     data: [],
     options: {

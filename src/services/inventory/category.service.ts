@@ -22,4 +22,18 @@ export class CategoryService {
       }?${searchToQueryString(search)}`
     );
   }
+
+  addCategory(model: CategoryModel): Promise<AxiosResponse> {
+    return axiosInstance.post(
+      `${this.env.apiUrl}/${inventoryEndpoints.categories}`,
+      model
+    );
+  }
+
+  updateCategory(model: CategoryModel): Promise<AxiosResponse> {
+    return axiosInstance.put(
+      `${this.env.apiUrl}/${inventoryEndpoints.categories}`,
+      model
+    );
+  }
 }

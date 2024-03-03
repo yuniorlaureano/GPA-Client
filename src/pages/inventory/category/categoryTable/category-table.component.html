@@ -8,11 +8,42 @@
   <tr header>
     <th>Nombre</th>
     <th>Descripción</th>
+    <th></th>
   </tr>
   <tbody body>
     <tr *ngFor="let category of data.data">
       <td>{{ category.name }}</td>
       <td>{{ category.description }}</td>
+      <td style="width: 10px">
+        <div class="dropleft" style="padding: 0; margin: 0">
+          <button
+            class="btn"
+            type="button"
+            data-toggle="dropdown"
+            aria-haspopup="false"
+            aria-expanded="false"
+            style="padding: 0; margin: 0"
+          >
+            ...
+          </button>
+          <span class="dropdown-menu">
+            <button
+              class="dropdown-item"
+              style="color: red"
+              (click)="onDelete(category)"
+            >
+              <i class="fa fa-trash"></i>
+            </button>
+            <button
+              class="dropdown-item"
+              style="color: #ffc107"
+              (click)="onEdit(category)"
+            >
+              <i class="fa fa-edit"></i>
+            </button>
+          </span>
+        </div>
+      </td>
     </tr>
   </tbody>
 </data-table>
