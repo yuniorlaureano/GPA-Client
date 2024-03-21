@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { CategoryTableComponent } from './categoryTable/category-table.component';
 import { ModalComponent } from '../../../components/modal/modal.component';
 import { CategoryFormComponent } from './categoryForm/category-form.component';
@@ -7,46 +7,69 @@ import {
   categoryModelDefaultValues,
 } from '../../../models/inventory/category.model';
 import { CategoryService } from '../../../services/inventory/category.service';
+import { ConfirmComponent } from '../../../components/confirm/confirm.component';
 
 @Component({
   selector: 'app-categoryPage',
   standalone: true,
-  imports: [CategoryTableComponent, ModalComponent, CategoryFormComponent],
+  imports: [
+    CategoryTableComponent,
+    ModalComponent,
+    CategoryFormComponent,
+    ConfirmComponent,
+  ],
   templateUrl: './category-page.component.html',
-  styleUrl: './category-page.component.css',
 })
 export class CategoryPageComponent {
-  isModalOpenned: boolean = false;
-  @Input() model: CategoryModel = categoryModelDefaultValues;
+  isModalOpen: boolean = false;
+  isConfirmOpen: boolean = false;
+  model: CategoryModel = categoryModelDefaultValues;
+  public reloadTable: number = 1;
   constructor(private categoryService: CategoryService) {}
 
+  handleReloadTable = () => (this.reloadTable = this.reloadTable * -1);
+
   openModal = () => {
-    this.isModalOpenned = true;
+    this.isModalOpen = true;
   };
 
   handleClose = () => {
     this.model = { ...categoryModelDefaultValues };
-    this.isModalOpenned = false;
+    this.isModalOpen = false;
   };
 
-  handleSubmit = (model: CategoryModel) => {
+  handleSubmit = async (model: CategoryModel) => {
     if (model.id) {
-      this.categoryService.updateCategory(model);
+      await this.categoryService.updateCategory(model);
       this.handleClose();
+      this.handleReloadTable();
     } else {
-      this.categoryService.addCategory(model);
+      await this.categoryService.addCategory(model);
       this.handleClose();
+      this.handleReloadTable();
     }
-  };
-
-  handleDelete = (model: CategoryModel) => {
-    this.model = model;
-    console.log(this.model);
-    this.isModalOpenned = true;
   };
 
   handleEdit = (model: CategoryModel) => {
     this.model = model;
-    this.isModalOpenned = true;
+    this.openModal();
+  };
+
+  handleDelete = (model: CategoryModel) => {
+    this.model = model;
+    this.isConfirmOpen = true;
+  };
+
+  handleCancel = () => {
+    this.isConfirmOpen = false;
+    this.model = { ...categoryModelDefaultValues };
+  };
+
+  handleAccept = async () => {
+    if (this.model.id) {
+      await this.categoryService.deleteCategory(this.model.id);
+      this.handleReloadTable();
+      this.isConfirmOpen = false;
+    }
   };
 }

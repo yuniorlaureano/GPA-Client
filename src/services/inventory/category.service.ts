@@ -36,4 +36,10 @@ export class CategoryService {
       model
     );
   }
+
+  deleteCategory(id: string): Promise<AxiosResponse> {
+    return axiosInstance.delete(
+      `${this.env.apiUrl}/${inventoryEndpoints.categories}/${id}`
+    );
+  }
 }

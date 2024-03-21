@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './data-table.component.html',
-  styleUrl: './data-table.component.css',
 })
 export class DataTableComponent {
   @Input() options: DataTableOptionModel = {

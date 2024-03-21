@@ -1,0 +1,46 @@
+<div
+  [ngClass]="{ 'modal fade show': isOpen }"
+  [style.display]="isOpen ? 'block' : 'none'"
+  [style.padding-right]="isOpen ? '17px' : ''"
+  [attr.aria-modal]="isOpen ? 'true' : ''"
+  [attr.role]="isOpen ? 'dialog' : ''"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h4 class="modal-title">Default Modal</h4> -->
+        <ng-content select="[title]"></ng-content>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="handleClose()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ng-content select="[body]"></ng-content>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button
+          type="button"
+          class="btn btn-default"
+          data-dismiss="modal"
+          (click)="handleClose()"
+        >
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-primary" (click)="handleAccept()">
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- style="height: auto; padding-right: 17px;" -->
+<!-- modal-open -->
+<!-- padding-right: 17px; display: block; -->
+<!-- aria-modal="true" -->

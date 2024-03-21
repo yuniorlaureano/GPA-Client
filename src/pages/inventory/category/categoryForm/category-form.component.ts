@@ -57,7 +57,6 @@ export class CategoryFormComponent implements OnChanges {
   };
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
     this.form.setValue({ ...this.model });
   }
 }

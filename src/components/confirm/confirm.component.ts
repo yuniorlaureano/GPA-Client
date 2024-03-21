@@ -3,16 +3,16 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'gpa-modal',
+  selector: 'gpa-confirm',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './modal.component.html',
+  templateUrl: './confirm.component.html',
 })
-export class ModalComponent implements OnChanges {
+export class ConfirmComponent implements OnChanges {
   @Input() isOpen: boolean = false;
 
   @Input() onClose: () => void = () => {};
-  @Input() onSave: () => void = () => {};
+  @Input() onAccept: () => void = () => {};
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('isOpen' in changes) {
@@ -29,7 +29,7 @@ export class ModalComponent implements OnChanges {
     this.onClose();
   };
 
-  handleSave() {
-    this.onSave();
+  handleAccept() {
+    this.onAccept();
   }
 }

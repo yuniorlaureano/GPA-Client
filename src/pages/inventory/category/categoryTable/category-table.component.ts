@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { DataTableComponent } from '../../../../components/datatable/data-table.component';
 import { CategoryModel } from '../../../../models/inventory/category.model';
 import { CommonModule } from '@angular/common';
@@ -13,9 +19,10 @@ import { SearchModel } from '../../../../models/common/search.model';
   imports: [DataTableComponent, CommonModule],
   templateUrl: './category-table.component.html',
 })
-export class CategoryTableComponent implements OnInit {
+export class CategoryTableComponent implements OnInit, OnChanges {
   @Input() onDelete: (model: CategoryModel) => void = () => {};
   @Input() onEdit: (model: CategoryModel) => void = () => {};
+  @Input() reloadTable: number = 1;
 
   public data: DataTableDataModel<CategoryModel> = {
     data: [],
@@ -26,7 +33,7 @@ export class CategoryTableComponent implements OnInit {
     },
   };
 
-  public search: SearchModel = { ...DEFAULT_SEARCH_PARAMS, pageSize: 1 };
+  public search: SearchModel = { ...DEFAULT_SEARCH_PARAMS };
 
   constructor(private categoryService: CategoryService) {}
 
@@ -45,6 +52,12 @@ export class CategoryTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories({ ...this.search });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['reloadTable'] && !changes['reloadTable'].firstChange) {
+      this.getCategories({ ...this.search });
+    }
   }
 
   handleSetPageToShow = (value: number) => {

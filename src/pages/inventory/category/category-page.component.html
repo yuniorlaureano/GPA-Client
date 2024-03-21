@@ -23,13 +23,29 @@
   </div>
   <div class="content">
     <div class="container-fluid">
-      <category-table [onDelete]="handleDelete" [onEdit]="handleEdit" />
+      <category-table
+        [onDelete]="handleDelete"
+        [onEdit]="handleEdit"
+        [reloadTable]="reloadTable"
+      />
     </div>
   </div>
 </div>
 <gpa-category-form
-  [isOpen]="isModalOpenned"
+  [isOpen]="isModalOpen"
   [onClose]="handleClose"
   [onSubmit]="handleSubmit"
   [model]="model"
 />
+
+<gpa-confirm
+  [isOpen]="isConfirmOpen"
+  [onClose]="handleCancel"
+  [onAccept]="handleAccept"
+>
+  <h3 title>Eliminar categoría</h3>
+  <p body>
+    Está seguro que desea eliminar la categoría:
+    <strong>{{ model.name }}</strong>
+  </p>
+</gpa-confirm>
