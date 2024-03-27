@@ -1,0 +1,59 @@
+<data-table
+  [onSetPageToShow]="handleSetPageToShow"
+  [options]="data.options"
+  [onForwardPage]="handleForwardPage"
+  [onBackwardPage]="handleBackwardPage"
+>
+  <h3 class="card-title" caption>Productos</h3>
+  <tr header>
+    <th>Código</th>
+    <th>Nombre</th>
+    <th>Descripción</th>
+    <th>Precio</th>
+    <th>Categoría</th>
+    <th>Ubiccación</th>
+    <th>Unidad</th>
+    <th></th>
+  </tr>
+  <tbody body>
+    <tr *ngFor="let product of data.data">
+      <td>{{ product.code }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.productLocation }}</td>
+      <td>{{ product.unit }}</td>
+      <td style="width: 10px">
+        <div class="dropleft" style="padding: 0; margin: 0">
+          <button
+            class="btn"
+            type="button"
+            data-toggle="dropdown"
+            aria-haspopup="false"
+            aria-expanded="false"
+            style="padding: 0; margin: 0"
+          >
+            ...
+          </button>
+          <span class="dropdown-menu">
+            <button
+              class="dropdown-item"
+              style="color: red"
+              (click)="onDelete(product)"
+            >
+              <i class="fa fa-trash"></i>
+            </button>
+            <button
+              class="dropdown-item"
+              style="color: #ffc107"
+              (click)="onEdit(product)"
+            >
+              <i class="fa fa-edit"></i>
+            </button>
+          </span>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</data-table>

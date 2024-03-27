@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
-import { ProductTableComponent } from './product-table/product-table.component';
-import { ProductService } from '../../../services/inventory/product.service';
-import { ProductModel } from '../../../models/inventory/product.model';
-import { RouterLink } from '@angular/router';
+import { ProductService } from '../../../../services/inventory/product.service';
+import { ProductModel } from '../../../../models/inventory/product.model';
 
 @Component({
   selector: 'app-categoryPage',
   standalone: true,
-  imports: [ProductTableComponent, RouterLink],
-  templateUrl: './product-page.component.html',
+  imports: [],
+  templateUrl: './product-registration-page.component.html',
 })
-export class ProductPageComponent {
+export class ProductRegistrationPageComponent {
   isModalOpen: boolean = false;
   isConfirmOpen: boolean = false;
   public reloadTable: number = 1;

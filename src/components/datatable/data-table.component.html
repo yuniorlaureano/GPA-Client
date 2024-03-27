@@ -4,12 +4,14 @@
   </div>
   <!-- /.card-header -->
   <div class="card-body">
-    <table class="table table-bordered">
-      <thead>
-        <ng-content select="[header]"></ng-content>
-      </thead>
-      <ng-content select="[body]"></ng-content>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <ng-content select="[header]"></ng-content>
+        </thead>
+        <ng-content select="[body]"></ng-content>
+      </table>
+    </div>
   </div>
   <!-- /.card-body -->
   <div class="card-footer clearfix">

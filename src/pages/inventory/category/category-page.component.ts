@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CategoryTableComponent } from './categoryTable/category-table.component';
 import { ModalComponent } from '../../../components/modal/modal.component';
-import { CategoryFormComponent } from './categoryForm/category-form.component';
+import { CategoryFormComponent } from './category-form/category-form.component';
 import {
   CategoryModel,
   categoryModelDefaultValues,

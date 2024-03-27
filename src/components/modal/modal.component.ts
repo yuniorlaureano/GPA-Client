@@ -16,7 +16,7 @@ export class ModalComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('isOpen' in changes) {
-      if (changes['isOpen']) {
+      if (changes['isOpen'].currentValue) {
         document.body.classList.add('modal-open');
       } else {
         document.body.classList.remove('modal-open');
