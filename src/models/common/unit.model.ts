@@ -4,3 +4,10 @@ export interface UnitModel {
   name: string;
   description: string;
 }
+
+export const unitModelDefaultValues: UnitModel = {
+  id: null,
+  code: '',
+  name: '',
+  description: '',
+};

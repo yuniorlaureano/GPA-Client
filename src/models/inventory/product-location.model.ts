@@ -3,5 +3,11 @@ export interface ProductLocationModel {
   code: string;
   name: string;
   description: string;
-  enabled: boolean;
 }
+
+export const productLocationDefaultValues: ProductLocationModel = {
+  id: null,
+  code: '',
+  name: '',
+  description: '',
+};
