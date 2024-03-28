@@ -7,6 +7,7 @@ export const paths = {
   category: 'inventory/category',
   product: 'inventory/product',
   productRegistration: 'inventory/product/form',
+  productRegistrationEdit: 'inventory/product/form/:id',
 };
 
 export default [
@@ -20,6 +21,10 @@ export default [
   },
   {
     path: paths.productRegistration,
+    component: ProductRegistrationPageComponent,
+  },
+  {
+    path: paths.productRegistrationEdit,
     component: ProductRegistrationPageComponent,
   },
 ] as Routes;

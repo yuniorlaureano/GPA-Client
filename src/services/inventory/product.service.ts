@@ -6,7 +6,10 @@ import { ResponseModel } from '../../models/common/response.model';
 import { AxiosResponse } from 'axios';
 import { SearchModel } from '../../models/common/search.model';
 import { searchToQueryString } from '../common/util.service';
-import { ProductModel } from '../../models/inventory/product.model';
+import {
+  ProductCreationModel,
+  ProductModel,
+} from '../../models/inventory/product.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,17 +27,23 @@ export class ProductService {
     );
   }
 
-  addProduct(model: ProductModel): Promise<AxiosResponse> {
+  addProduct(model: ProductCreationModel): Promise<AxiosResponse> {
     return axiosInstance.post(
       `${this.env.apiUrl}/${inventoryEndpoints.products}`,
       model
     );
   }
 
-  updateProduct(model: ProductModel): Promise<AxiosResponse> {
+  updateProduct(model: ProductCreationModel): Promise<AxiosResponse> {
     return axiosInstance.put(
       `${this.env.apiUrl}/${inventoryEndpoints.products}`,
       model
+    );
+  }
+
+  getProduct(id: string): Promise<AxiosResponse<ProductModel, any>> {
+    return axiosInstance.get(
+      `${this.env.apiUrl}/${inventoryEndpoints.products}/${id}`
     );
   }
 

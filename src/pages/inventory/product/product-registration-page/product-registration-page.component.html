@@ -9,10 +9,25 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item">
-              <button type="button" class="btn btn-danger r-12 mr-2">
-                Cencelar
+              <a
+                routerLink="/inventory/product"
+                class="btn btn-warning r-12 mr-2"
+              >
+                <i class="fa fa-plus"></i> Cencelar
+              </a>
+              <button
+                *ngIf="this.isEdit"
+                type="button"
+                class="btn btn-danger r-12 mr-2"
+                (click)="handleDelete()"
+              >
+                <i class="fa fa-trash"></i> Borrar
               </button>
-              <button type="button" class="btn btn-primary r-12">
+              <button
+                type="button"
+                class="btn btn-primary r-12"
+                (click)="save()"
+              >
                 <i class="fa fa-save"></i> Guardar
               </button>
             </li>
@@ -33,7 +48,7 @@
           <div class="card">
             <!-- /.card-header -->
             <div class="card-body">
-              <form>
+              <form [formGroup]="form">
                 <div class="row">
                   <div class="col-sm-6">
                     <!-- text input -->
@@ -44,6 +59,7 @@
                         id="code"
                         name="code"
                         class="form-control"
+                        formControlName="code"
                       />
                     </div>
                   </div>
@@ -55,8 +71,21 @@
                         id="name"
                         name="name"
                         class="form-control"
+                        formControlName="name"
                       />
                     </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label for="expirationDate">Fecha de expiración</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="expirationDate"
+                      name="expirationDate"
+                      formControlName="expirationDate"
+                    />
                   </div>
                 </div>
                 <div class="row">
@@ -69,17 +98,19 @@
                         id="price"
                         name="price"
                         class="form-control"
+                        formControlName="price"
                       />
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label for="bardCode">Código de barra</label>
+                      <label for="barCode">Código de barra</label>
                       <input
                         type="text"
-                        id="bardCode"
-                        name="bardCode"
+                        id="barCode"
+                        name="barCode"
                         class="form-control"
+                        formControlName="barCode"
                       />
                     </div>
                   </div>
@@ -88,36 +119,34 @@
                   <div class="col-sm-4">
                     <div class="form-group">
                       <label for="unit">Unidad</label>
-                      <select class="form-control" id="unit" name="unit">
-                        <option>option 1</option>
-                        <option>option 2</option>
-                      </select>
+                      <gpa-select
+                        [options]="units"
+                        id="unit"
+                        name="unit"
+                        formControlName="unitId"
+                      />
                     </div>
                   </div>
                   <div class="col-sm-4">
                     <div class="form-group">
                       <label for="category">Categoría</label>
-                      <select
-                        class="form-control"
+                      <gpa-select
+                        [options]="categories"
                         id="category"
                         name="category"
-                      >
-                        <option>option 1</option>
-                        <option>option 2</option>
-                      </select>
+                        formControlName="categoryId"
+                      />
                     </div>
                   </div>
                   <div class="col-sm-4">
                     <div class="form-group">
                       <label for="location">Ubicación</label>
-                      <select
-                        class="form-control"
+                      <gpa-select
+                        [options]="locations"
                         id="location"
                         name="location"
-                      >
-                        <option>option 1</option>
-                        <option>option 2</option>
-                      </select>
+                        formControlName="productLocationId"
+                      />
                     </div>
                   </div>
                 </div>
@@ -131,6 +160,7 @@
                         rows="3"
                         id="description"
                         name="description"
+                        formControlName="description"
                       ></textarea>
                     </div>
                   </div>
@@ -149,3 +179,15 @@
   </section>
   <!-- /.content -->
 </div>
+
+<gpa-confirm
+  [isOpen]="isConfirmDeleteOpen"
+  [onClose]="handleDeleteConfirmCancel"
+  [onAccept]="handleDeleteConfirmed"
+>
+  <h3 title>Eliminar categoría</h3>
+  <p body>
+    Está seguro que desea eliminar el producto:
+    <strong>{{ selectedProduct?.code + " " + selectedProduct?.name }}</strong>
+  </p>
+</gpa-confirm>

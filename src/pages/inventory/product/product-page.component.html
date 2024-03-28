@@ -43,3 +43,14 @@
   </section>
   <!-- /.content -->
 </div>
+<gpa-confirm
+  [isOpen]="isConfirmDeleteOpen"
+  [onClose]="handleDeleteConfirmCancel"
+  [onAccept]="handleDeleteConfirmed"
+>
+  <h3 title>Eliminar categoría</h3>
+  <p body>
+    Está seguro que desea eliminar el producto:
+    <strong>{{ selectedProduct?.code + " " + selectedProduct?.name }}</strong>
+  </p>
+</gpa-confirm>
