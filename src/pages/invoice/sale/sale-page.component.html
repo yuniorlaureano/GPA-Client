@@ -1,0 +1,122 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Venta</h1>
+        </div>
+        <div class="col-sm-6"></div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <!-- general form elements -->
+          <div class="card">
+            <form>
+              <div class="card-body">
+                <div class="active tab-pane" id="activity">
+                  <!-- Post -->
+                  <div class="post">
+                    <div class="user-block">
+                      <i
+                        class="fas fa-user img-circle img-bordered-sm"
+                        style="font-size: 40px; float: left"
+                      ></i>
+                      <span class="username">
+                        <a href="#">Cliente:</a>
+                      </span>
+                      <span class="description">{{
+                        client?.name + " " + client?.lastName
+                      }}</span>
+                    </div>
+                    <!-- /.user-block -->
+
+                    <p>
+                      <a
+                        href="#"
+                        class="link-black text-sm mr-2"
+                        style="color: green"
+                        ><i class="fas fa-dollar-sign"></i> Credito: $0</a
+                      >
+                      <a href="#" class="link-black text-sm" style="color: red"
+                        ><i class="fas fa-dollar-sign"></i> Debito: $0</a
+                      >
+                    </p>
+
+                    <app-client-dynamic-search
+                      [onSelectedItem]="handleSelectedClient"
+                    />
+                  </div>
+                  <!-- /.post -->
+                </div>
+                <hr />
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Tipo de transacción</label>
+                  <gpa-select
+                    [options]="[]"
+                    id="location"
+                    name="location"
+                    formControlName="productLocationId"
+                  />
+                </div>
+                <div
+                  class="form-group"
+                  style="
+                    border: solid 1px lightgray;
+                    padding: 6px;
+                    border-radius: 5px;
+                  "
+                >
+                  <app-product-dynaic-search />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputFile">File input</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input
+                        type="file"
+                        class="custom-file-input"
+                        id="exampleInputFile"
+                      />
+                      <label class="custom-file-label" for="exampleInputFile"
+                        >Choose file</label
+                      >
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text">Upload</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="exampleCheck1"
+                  />
+                  <label class="form-check-label" for="exampleCheck1"
+                    >Check me out</label
+                  >
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>

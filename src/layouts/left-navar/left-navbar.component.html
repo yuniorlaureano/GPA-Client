@@ -29,6 +29,16 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a
+                routerLink="/inventory/stock"
+                routerLinkActive="active"
+                class="nav-link"
+              >
+                <i class="far fa-circle nav-icon"></i>
+                <p>Existencia</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
                 routerLink="/inventory/product"
                 routerLinkActive="active"
                 class="nav-link"
@@ -86,9 +96,9 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/charts/chartjs.html" class="nav-link">
+              <a routerLink="/invoice/sale" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>ChartJS</p>
+                <p>Venta</p>
               </a>
             </li>
           </ul>

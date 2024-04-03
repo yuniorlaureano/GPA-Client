@@ -8,7 +8,6 @@ import { SelectModel } from '../../models/common/select-model';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -18,7 +17,7 @@ import { SelectModel } from '../../models/common/select-model';
   ],
 })
 export class SelectComponent implements ControlValueAccessor {
-  @Input() options: SelectModel[] = [];
+  @Input() options: SelectModel<string>[] = [];
   selectedOption: any;
 
   constructor() {}

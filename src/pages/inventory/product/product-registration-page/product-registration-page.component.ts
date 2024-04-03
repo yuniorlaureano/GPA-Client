@@ -32,10 +32,10 @@ declare var $: any;
   templateUrl: './product-registration-page.component.html',
 })
 export class ProductRegistrationPageComponent implements OnInit {
-  units: SelectModel[] = [];
-  categories: SelectModel[] = [];
+  units: SelectModel<string>[] = [];
+  categories: SelectModel<string>[] = [];
   selectedProduct: { code?: string; name?: string; id?: string | null } = {};
-  locations: SelectModel[] = [];
+  locations: SelectModel<string>[] = [];
   isConfirmDeleteOpen: boolean = false;
   isEdit: boolean = false;
 
@@ -83,17 +83,17 @@ export class ProductRegistrationPageComponent implements OnInit {
     this.categories = categories.data.data.map((category) => ({
       value: category.id,
       text: category.name,
-    })) as SelectModel[];
+    })) as SelectModel<string>[];
 
     this.locations = locations.data.data.map((location) => ({
       value: location.id,
       text: location.code + '-' + location.name,
-    })) as SelectModel[];
+    })) as SelectModel<string>[];
 
     this.units = units.data.data.map((unit) => ({
       value: unit.id,
       text: unit.code + '-' + unit.name,
-    })) as SelectModel[];
+    })) as SelectModel<string>[];
   }
 
   async getProduct(id: string): Promise<ProductCreationModel> {

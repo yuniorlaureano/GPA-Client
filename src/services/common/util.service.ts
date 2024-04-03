@@ -1,6 +1,6 @@
 import { SearchModel } from '../../models/common/search.model';
 export const searchToQueryString = (search: SearchModel) => {
-  return `page=${search.page ?? 1}&pageSize=${search.pageSize ?? 10}&pageSize=${
+  return `page=${search.page ?? 1}&pageSize=${search.pageSize ?? 10}&search=${
     search.search ?? ''
   }`;
 };

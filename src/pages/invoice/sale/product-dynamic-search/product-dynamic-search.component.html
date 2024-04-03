@@ -1,0 +1,23 @@
+<label>Productos</label>
+<app-dynamic-search
+  [items]="items"
+  [options]="options"
+  [onSelectedItem]="handleSelectedItem"
+  [onSearch]="handleSearch"
+  [onNext]="handleNext"
+  [onPrevious]="handlePrevious"
+/>
+<hr />
+<table class="table">
+  <tr *ngFor="let productId of getSelectedProductsKeys()">
+    <td>{{ this.selectedItems[productId].code }}</td>
+    <td>{{ this.selectedItems[productId].name }}</td>
+    <td>${{ this.selectedItems[productId].price }}</td>
+    <td style="width: 100px">
+      <input type="number" class="form-control" />
+    </td>
+    <td>
+      <i class="fa fa-trash" aria-hidden="true"></i>
+    </td>
+  </tr>
+</table>

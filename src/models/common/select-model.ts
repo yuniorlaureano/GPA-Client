@@ -1,4 +1,4 @@
-export interface SelectModel {
+export interface SelectModel<T> {
   text: string;
-  value: string;
+  value: T;
 }
